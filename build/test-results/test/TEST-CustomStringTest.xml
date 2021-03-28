@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CustomStringTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2021-03-28T13:55:20" hostname="y-Satellite-L850-B5K" time="0.065">
+  <properties/>
+  <testcase name="subSequence()" classname="CustomStringTest" time="0.015"/>
+  <testcase name="concat()" classname="CustomStringTest" time="0.002"/>
+  <testcase name="equals()" classname="CustomStringTest" time="0.004"/>
+  <testcase name="toFloat()" classname="CustomStringTest" time="0.002"/>
+  <testcase name="testToString()" classname="CustomStringTest" time="0.001"/>
+  <testcase name="get()" classname="CustomStringTest" time="0.002"/>
+  <testcase name="find()" classname="CustomStringTest" time="0.002"/>
+  <testcase name="trim()" classname="CustomStringTest" time="0.014"/>
+  <testcase name="chars()" classname="CustomStringTest" time="0.001"/>
+  <testcase name="toInt()" classname="CustomStringTest" time="0.001"/>
+  <testcase name="getLength()" classname="CustomStringTest" time="0.001"/>
+  <testcase name="reverse()" classname="CustomStringTest" time="0.002"/>
+  <testcase name="indexOf()" classname="CustomStringTest" time="0.001"/>
+  <testcase name="isEmpty()" classname="CustomStringTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
