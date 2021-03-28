@@ -96,4 +96,11 @@ internal class CustomStringTest {
     fun reverse(){
         assertEquals(string.reversed(), customString.reverse().toString())
     }
+
+    @org.junit.jupiter.api.Test
+    fun parseIntToString(){
+        assertEquals("123", customString.parseIntToString(123).toString())
+        assertEquals("0", customString.parseIntToString(0).toString())
+        assertEquals("-1", customString.parseIntToString(-1).toString())
+    }
 }
