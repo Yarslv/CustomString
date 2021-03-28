@@ -60,17 +60,12 @@ internal class CustomStringTest {
     }
 
     @org.junit.jupiter.api.Test
-    fun toInt(){
-        val number = "100500"
-        assertEquals(number.toInt(), CustomString(number).toInt())
-        assertEquals(-1 * number.toInt(), -1 * CustomString(number).toInt())
-    }
-
-    @org.junit.jupiter.api.Test
     fun toFloat(){
         val number = "100500.100500"
+        val zero = "0.000"
         assertEquals(number.toFloat(), CustomString(number).toFloat())
-        assertEquals(-1 * number.toFloat(), -1 * CustomString(number).toFloat())
+        assertEquals(zero.toFloat(), CustomString(zero).toFloat())
+        assertEquals("-$number".toFloat(), ("-" + CustomString(number)).toFloat())
     }
 
     @org.junit.jupiter.api.Test
@@ -95,6 +90,11 @@ internal class CustomStringTest {
     @org.junit.jupiter.api.Test
     fun reverse(){
         assertEquals(string.reversed(), customString.reverse().toString())
+        assertTrue(customString.reverse().equals(string.reversed()))
+
+        println("123".hashCode())
+        print(CustomString("123").hashCode())
+
     }
 
     @org.junit.jupiter.api.Test
