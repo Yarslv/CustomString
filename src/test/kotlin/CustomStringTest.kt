@@ -2,20 +2,20 @@ import org.junit.jupiter.api.Assertions.*
 
 internal class CustomStringTest {
 
-    private val string = "  qwertyu12345 "
-    private val customString = CustomString(string)
+    private val originalString = "  qwertyu12345 "
+    private val customString = CustomString(originalString)
 
     @org.junit.jupiter.api.Test
     fun getLength() {
         val anotherString = "qwerty"
-        assertEquals(string.length, customString.length)
-        assertEquals((string + anotherString).length, customString.concat(anotherString).length)
+        assertEquals(originalString.length, customString.length)
+        assertEquals((originalString + anotherString).length, customString.concat(anotherString).length)
     }
 
     @org.junit.jupiter.api.Test
     fun concat() {
         val anotherString = "qwerty"
-        assertEquals( customString + anotherString, string + anotherString)
+        assertEquals( customString + anotherString, originalString + anotherString)
     }
 
     @org.junit.jupiter.api.Test
@@ -26,19 +26,19 @@ internal class CustomStringTest {
 
     @org.junit.jupiter.api.Test
     fun trim() {
-        assertEquals(string.trim(), customString.trim().toString())
+        assertEquals(originalString.trim(), customString.trim().toString())
     }
 
     @org.junit.jupiter.api.Test
     fun get() {
-        for (i in string.indices){
-            assertEquals(string.get(i), customString.get(i))
+        for (i in originalString.indices){
+            assertEquals(originalString.get(i), customString.get(i))
         }
     }
 
     @org.junit.jupiter.api.Test
     fun chars() {
-        val charsOriginalString = string.toCharArray()
+        val charsOriginalString = originalString.toCharArray()
         val charsCustomString = customString.chars()
 
         for(i in charsOriginalString.indices){
@@ -48,14 +48,14 @@ internal class CustomStringTest {
 
     @org.junit.jupiter.api.Test
     fun subSequence() {
-        for (i in string.indices){
-            assertEquals(string.subSequence(0, i), customString.subSequence(0,i).toString())
+        for (i in originalString.indices){
+            assertEquals(originalString.subSequence(0, i), customString.subSequence(0,i).toString())
         }
     }
 
     @org.junit.jupiter.api.Test
     fun testToString() {
-        assertEquals(string, customString.toString())
+        assertEquals(originalString, customString.toString())
         assertEquals(String(), CustomString().toString())
     }
 
@@ -70,31 +70,27 @@ internal class CustomStringTest {
 
     @org.junit.jupiter.api.Test
     fun indexOf(){
-        assertEquals(string.indexOf('5'), customString.indexOf('5', 0))
-        assertEquals(string.indexOf('z'), customString.indexOf('z', 0))
+        assertEquals(originalString.indexOf('5'), customString.indexOf('5', 0))
+        assertEquals(originalString.indexOf('z'), customString.indexOf('z', 0))
     }
 
     @org.junit.jupiter.api.Test
     fun equals(){
         assertTrue(CustomString().equals(String()))
-        assertTrue(customString.equals((string)))
+        assertTrue(customString.equals((originalString)))
     }
 
     @org.junit.jupiter.api.Test
     fun isEmpty(){
-        assertEquals(string.isEmpty(), customString.isEmpty())
+        assertEquals(originalString.isEmpty(), customString.isEmpty())
         assertFalse(String().isEmpty() == customString.isEmpty())
         assertTrue(String().isEmpty() == CustomString().isEmpty())
     }
 
     @org.junit.jupiter.api.Test
     fun reverse(){
-        assertEquals(string.reversed(), customString.reverse().toString())
-        assertTrue(customString.reverse().equals(string.reversed()))
-
-        println("123".hashCode())
-        print(CustomString("123").hashCode())
-
+        assertEquals(originalString.reversed(), customString.reversed().toString())
+        assertTrue(customString.reversed().equals(originalString.reversed()))
     }
 
     @org.junit.jupiter.api.Test
