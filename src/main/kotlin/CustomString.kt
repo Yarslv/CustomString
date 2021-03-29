@@ -12,11 +12,17 @@ class CustomString : CharSequence {
 
     override val length: Int
 
-    private var charSequence: CharArray
+    private val charSequence: CharArray
 
     constructor() {
         length = INITIAL_SIZE
         charSequence = CharArray(length)
+    }
+
+    constructor(initialInt: Int){
+        val stringFromInt = parseIntToString(initialInt)
+        length = stringFromInt.length
+        charSequence = stringFromInt.chars()
     }
 
     constructor(charSequence: CharSequence) {

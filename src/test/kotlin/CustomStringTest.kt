@@ -6,6 +6,15 @@ internal class CustomStringTest {
     private val customString = CustomString(originalString)
 
     @org.junit.jupiter.api.Test
+    fun constructors() {
+        val int = 1000
+        val charSequence = charArrayOf('a', 'b', 'c')
+        assertTrue(CustomString(int).equals(int.toString()))
+        assertTrue(CustomString(charSequence).equals(String(charSequence)))
+        assertTrue(CustomString(charArrayOf()).equals(String(charArrayOf())))
+    }
+
+    @org.junit.jupiter.api.Test
     fun getLength() {
         val anotherString = "qwerty"
         assertEquals(originalString.length, customString.length)
