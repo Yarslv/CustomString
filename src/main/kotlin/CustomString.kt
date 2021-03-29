@@ -37,6 +37,70 @@ class CustomString : CharSequence {
     }
 
     /**
+     * Returns the character at the specified index
+     */
+    override fun get(index: Int): Char{
+        return if(index < 0 || index >= length)
+            throw IndexOutOfBoundsException("wrong index($index) in get()")
+        else charSequence[index]
+    }
+
+    /**
+     * Creates a substring from the start index to the end one (not including it)
+     */
+    override fun subSequence(startIndex: Int, endIndex: Int): CustomString {
+        if(startIndex > endIndex){
+            throw IndexOutOfBoundsException("start index($startIndex) " +
+                    "is greater than end index($endIndex) in subSequence()")
+        }else if(startIndex < 0 || startIndex > length){
+            throw IndexOutOfBoundsException("wrong start index($startIndex) in subSequence()")
+        }else if(endIndex < 0 || endIndex > length){
+            throw IndexOutOfBoundsException("wrong end index($endIndex) in subSequence()")
+        }
+
+        with(CharArray((endIndex) - startIndex)) {
+            for (i in startIndex until endIndex) {
+                this[i - startIndex] = charSequence[i]
+            }
+            return CustomString(this)
+        }
+    }
+
+    /**
+     * Creates a String class
+     */
+    override fun toString(): String {
+        return String(charSequence)
+    }
+
+    /**
+     * Allows to compare CustomString with other classes that implement the CharSequence interface
+     * @return true - if their chars match, false - if not
+     */
+    override fun equals(other: Any?): Boolean {
+        if(other !is CharSequence){
+            return false
+        }
+        else{
+            if (length != other.length) return false
+
+            for(i in charSequence.indices){
+                if (charSequence[i] != other[i]) return false
+            }
+        }
+        return true
+    }
+
+    /**
+     * Automatically generated hash function
+     */
+    override fun hashCode(): Int {
+        var result = length
+        result = 31 * result + charSequence.contentHashCode()
+        return result
+    }
+
+    /**
      * Adds another sequence to the internal sequence of characters at the end.
      * @return a new CustomString consisting of these lines.
      */
@@ -147,6 +211,41 @@ class CustomString : CharSequence {
     }
 
     /**
+     * Searches for the first occurrence of the desired character
+     * @return index of the searched char if it is found, or -1 - if not
+     */
+    fun indexOf(char: Char, startIndex: Int): Int{
+        if(startIndex < 0 || startIndex >= length){
+            throw IndexOutOfBoundsException("wrong index($startIndex) in indexOf()")
+        }
+            for (i in startIndex until length){
+                if(charSequence[i] == char){
+                    return i
+                }
+            }
+        return -1
+    }
+
+    /**
+     * Returns a new CustomString whose internal character sequence will be mirrored.
+     */
+    fun reversed(): CustomString{
+        with(CharArray(length)) {
+            for (i in 0 until length) {
+                this[i] = charSequence[length - 1 - i]
+            }
+            return CustomString(this)
+        }
+    }
+
+
+
+    /**
+     * Returns the internal sequence of chars
+     */
+    fun chars(): CharArray = charSequence
+
+    /**
      * Calculates a Float number from an internal sequence of characters
      * @return float number
      */
@@ -177,7 +276,7 @@ class CustomString : CharSequence {
         }
         return calculate(currentNumberOfTens,
             currentIndex - 1,
-             currentNumberOfTens * digit + calculatedFloat)
+            currentNumberOfTens * digit + calculatedFloat)
     }
 
     /**
@@ -192,101 +291,4 @@ class CustomString : CharSequence {
         }
     }
 
-
-    /**
-     * Searches for the first occurrence of the desired character
-     * @return index of the searched char if it is found, or -1 - if not
-     */
-    fun indexOf(char: Char, startIndex: Int): Int{
-        if(startIndex < 0 || startIndex >= length){
-            throw IndexOutOfBoundsException("wrong index($startIndex) in indexOf()")
-        }
-            for (i in startIndex until length){
-                if(charSequence[i] == char){
-                    return i
-                }
-            }
-        return -1
-    }
-
-    /**
-     * Returns a new CustomString whose internal character sequence will be mirrored.
-     */
-    fun reversed(): CustomString{
-        with(CharArray(length)) {
-            for (i in 0 until length) {
-                this[i] = charSequence[length - 1 - i]
-            }
-            return CustomString(this)
-        }
-    }
-
-    /**
-     * Returns the character at the specified index
-     */
-    override fun get(index: Int): Char{
-        return if(index < 0 || index >= length)
-            throw IndexOutOfBoundsException("wrong index($index) in get()")
-            else charSequence[index]
-    }
-
-    /**
-     * Returns the internal sequence of chars
-     */
-    fun chars(): CharArray = charSequence
-
-    /**
-     * Creates a substring from the start index to the end one (not including it)
-     */
-    override fun subSequence(startIndex: Int, endIndex: Int): CustomString {
-        if(startIndex > endIndex){
-            throw IndexOutOfBoundsException("start index($startIndex) " +
-                    "is greater than end index($endIndex) in subSequence()")
-        }else if(startIndex < 0 || startIndex > length){
-            throw IndexOutOfBoundsException("wrong start index($startIndex) in subSequence()")
-        }else if(endIndex < 0 || endIndex > length){
-            throw IndexOutOfBoundsException("wrong end index($endIndex) in subSequence()")
-        }
-
-        with(CharArray((endIndex) - startIndex)) {
-            for (i in startIndex until endIndex) {
-                this[i - startIndex] = charSequence[i]
-            }
-            return CustomString(this)
-        }
-    }
-
-    /**
-     * Creates a String class
-     */
-    override fun toString(): String {
-        return String(charSequence)
-    }
-
-    /**
-     * Allows to compare CustomString with other classes that implement the CharSequence interface
-     * @return true - if their chars match, false - if not
-     */
-    override fun equals(other: Any?): Boolean {
-        if(other !is CharSequence){
-            return false
-        }
-        else{
-            if (length != other.length) return false
-
-            for(i in charSequence.indices){
-                if (charSequence[i] != other[i]) return false
-            }
-        }
-        return true
-    }
-
-    /**
-     * Automatically generated hash function
-     */
-    override fun hashCode(): Int {
-        var result = length
-        result = 31 * result + charSequence.contentHashCode()
-        return result
-    }
 }
